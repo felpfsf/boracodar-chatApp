@@ -1,0 +1,188 @@
+{
+  "conversa": [
+    {
+      "uid": 1,
+      "message": "Tive uma uideia incrível para um projeto! 😍",
+      "caller": "Cecilia - 11:30"
+    },
+    { "uid": 2, "message": "Sério? Me conta mais.", "caller": "Você - 11:32" },
+    {
+      "uid": 3,
+      "message": "E se a gente fizesse um chat moderno e responsivo em apenas uma semana?",
+      "caller": "Cecilia - 11:34"
+    },
+    { "uid": 4, "message": "#boraCodar! 🚀", "caller": "Você - 11:36" },
+    { "uid": 5, "message": "bora!!!", "caller": "Cecilia - 11:30" },
+    {
+      "uid": 6,
+      "message": "Como está indo o seu projeto? Por aqui ainda estou travado no começo 🥵",
+      "caller": "Você - 13:42"
+    },
+    {
+      "uid": 7,
+      "message": "Indo bem 😊, já adiantei boa parte do layout. Ainda não sei como fazer a lógica dele, você tem alguma idéia?",
+      "caller": "Cecilia - 13:55"
+    },
+    {
+      "uid": 8,
+      "message": "Uau 😍!!! está rápida. Estou pensando ainda no que posso usar mas creio que vá ser um pouco trabalhoso 🤔.",
+      "caller": "Você - 14:48"
+    },
+    {
+      "uid": 9,
+      "message": "😭 Sério? Ahhh pq nunca é fácil?",
+      "caller": "Cecilia - 15:18"
+    },
+    {
+      "uid": 10,
+      "message": "Já sei como fazer, é o seguinte...",
+      "caller": "Você - 18:36"
+    }
+  ],
+  "chats": [
+    {
+      "uid": 1,
+      "displayName": "Olive Gramelspacher",
+      "lastMessage": "Tive uma uideia incrível para um projeto! 😍",
+      "photoURL": "/images/20.jpg"
+    },
+    {
+      "uid": 2,
+      "displayName": "Shaun Kovaleski",
+      "lastMessage": "E aí primo, vamo jogar boliche? 😍",
+      "photoURL": "/images/73.jpg"
+    },
+    {
+      "uid": 3,
+      "displayName": "Jessika Mugg",
+      "lastMessage": "Terminei o review da sua PR, falta uns ajustes",
+      "photoURL": "/images/41.jpg"
+    },
+    {
+      "uid": 4,
+      "displayName": "Chuck Houzenga",
+      "lastMessage": "O estagiário testou em produção e bagunçou tudo",
+      "photoURL": "/images/19.jpg"
+    },
+    {
+      "uid": 5,
+      "displayName": "Stefani Rowney",
+      "lastMessage": "Você vai no show sexta-feira?",
+      "photoURL": "/images/39.jpg"
+    },
+    {
+      "uid": 6,
+      "displayName": "Bob Orville",
+      "lastMessage": "Ei, blz? Consegui fazer funcionar, vou te mandar o link",
+      "photoURL": "/images/30.jpg"
+    },
+    {
+      "uid": 7,
+      "displayName": "Olive Gramelspacher",
+      "lastMessage": "Tive uma uideia incrível para um projeto! 😍",
+      "photoURL": "/images/20.jpg"
+    },
+    {
+      "uid": 8,
+      "displayName": "Shaun Kovaleski",
+      "lastMessage": "E aí primo, vamo jogar boliche? 😍",
+      "photoURL": "/images/73.jpg"
+    },
+    {
+      "uid": 9,
+      "displayName": "Jessika Mugg",
+      "lastMessage": "Terminei o review da sua PR, falta uns ajustes",
+      "photoURL": "/images/41.jpg"
+    },
+    {
+      "uid": 10,
+      "displayName": "Chuck Houzenga",
+      "lastMessage": "O estagiário testou em produção e bagunçou tudo",
+      "photoURL": "/images/19.jpg"
+    },
+    {
+      "uid": 11,
+      "displayName": "Stefani Rowney",
+      "lastMessage": "Você vai no show sexta-feira?",
+      "photoURL": "/images/39.jpg"
+    },
+    {
+      "uid": 12,
+      "displayName": "Bob Orville",
+      "lastMessage": "Ei, blz? Consegui fazer funcionar, vou te mandar o link",
+      "photoURL": "/images/30.jpg"
+    },
+    {
+      "uid": 13,
+      "displayName": "Olive Gramelspacher",
+      "lastMessage": "Tive uma uideia incrível para um projeto! 😍",
+      "photoURL": "/images/20.jpg"
+    },
+    {
+      "uid": 14,
+      "displayName": "Shaun Kovaleski",
+      "lastMessage": "E aí primo, vamo jogar boliche? 😍",
+      "photoURL": "/images/73.jpg"
+    },
+    {
+      "uid": 15,
+      "displayName": "Jessika Mugg",
+      "lastMessage": "Terminei o review da sua PR, falta uns ajustes",
+      "photoURL": "/images/41.jpg"
+    },
+    {
+      "uid": 16,
+      "displayName": "Chuck Houzenga",
+      "lastMessage": "O estagiário testou em produção e bagunçou tudo",
+      "photoURL": "/images/19.jpg"
+    },
+    {
+      "uid": 17,
+      "displayName": "Stefani Rowney",
+      "lastMessage": "Você vai no show sexta-feira?",
+      "photoURL": "/images/39.jpg"
+    },
+    {
+      "uid": 18,
+      "displayName": "Bob Orville",
+      "lastMessage": "Ei, blz? Consegui fazer funcionar, vou te mandar o link",
+      "photoURL": "/images/30.jpg"
+    },
+    {
+      "uid": 19,
+      "displayName": "Olive Gramelspacher",
+      "lastMessage": "Tive uma uideia incrível para um projeto! 😍",
+      "photoURL": "/images/20.jpg"
+    },
+    {
+      "uid": 20,
+      "displayName": "Shaun Kovaleski",
+      "lastMessage": "E aí primo, vamo jogar boliche? 😍",
+      "photoURL": "/images/73.jpg"
+    },
+    {
+      "uid": 21,
+      "displayName": "Jessika Mugg",
+      "lastMessage": "Terminei o review da sua PR, falta uns ajustes",
+      "photoURL": "/images/41.jpg"
+    },
+    {
+      "uid": 22,
+      "displayName": "Chuck Houzenga",
+      "lastMessage": "O estagiário testou em produção e bagunçou tudo",
+      "photoURL": "/images/19.jpg"
+    },
+    {
+      "uid": 23,
+      "displayName": "Stefani Rowney",
+      "lastMessage": "Você vai no show sexta-feira?",
+      "photoURL": "/images/39.jpg"
+    },
+    {
+      "uid": 24,
+      "displayName": "Bob Orville",
+      "lastMessage": "Ei, blz? Consegui fazer funcionar, vou te mandar o link",
+      "photoURL": "/images/30.jpg"
+    }
+  ]
+}
