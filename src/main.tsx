@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App'
 import EmptyChat from './components/EmptyChat'
 import Home from './pages/Home'
+import Login from './pages/Login'
+import Register from './pages/Register'
 import './styles/index.css'
 
 const routes = createBrowserRouter([
@@ -17,8 +19,12 @@ const routes = createBrowserRouter([
         element: <Home />
       },
       {
-        path: '/emptychat',
-        element: <EmptyChat />
+        path: '/login',
+        element: <Login />
+      },
+      {
+        path: '/register',
+        element: <Register />
       }
     ]
   }
