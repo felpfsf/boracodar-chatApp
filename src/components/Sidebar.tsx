@@ -36,7 +36,7 @@ const Sidebar = ({ isOpen, toggle }: SidebarToggleProps) => {
             <SlMagnifier />
           </button>
         </div>
-        <div className='mt-4 pb-4 xl:h-[calc(100vh_-_286px)] overflow-y-scroll scrollbar-thin scrollbar-thumb-inputBg scrollbar-track-background'>
+        <div className='mt-4 pb-4 xl:h-[calc(100vh_-_286px)] h-[calc(100vh_-_200px)] overflow-y-scroll scrollbar-thin scrollbar-thumb-inputBg scrollbar-track-background'>
           {data.chats.map(chat => (
             <Chats key={chat.uid} {...chat} />
           ))}
