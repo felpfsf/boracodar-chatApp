@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useForm, FormProvider } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import SubmitButton from '../components/ui/SubmitButton'
 
 export const loginSchema = z.object({
   email: z.string().email().min(1, 'Email is required').optional(),
@@ -30,10 +31,8 @@ const Login = () => {
             className='flex flex-col w-full'
             onSubmit={methods.handleSubmit(onSubmit)}>
             <Input type='text' placeholder='E-mail Address' name={'email'} />
-            <Input type='password' placeholder='password' name={'password'} />
-            <button className='w-full border py-2 bg-inputBg rounded-full mt-2'>
-              Sign up
-            </button>
+            <Input type='password' placeholder='Password' name={'password'} />
+            <SubmitButton label='Sign Up' />
           </form>
         </FormProvider>
         <p className='mt-6'>

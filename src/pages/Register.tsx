@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom'
 import { useForm, FormProvider } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import SubmitButton from '../components/ui/SubmitButton'
 
 export const registerSchema = z.object({
   name: z.string().min(3, 'Name is required'),
   email: z.string().email().min(1, 'Email is required'),
   password: z.string().min(6, 'Password is required'),
-  photoURL: z.any().nullable().optional()
+  photoURL: z.any().nullable().optional() /*any, foda-se hahahaha */
   // photoURL: z.object({
   //   name: z.string(),
   //   size: z.number(),
@@ -38,11 +39,9 @@ const Register = () => {
             onSubmit={methods.handleSubmit(onSubmit)}>
             <Input type='text' placeholder='Name' name={'name'} />
             <Input type='text' placeholder='E-mail Address' name={'email'} />
-            <Input type='password' placeholder='password' name={'password'} />
+            <Input type='password' placeholder='Password' name={'password'} />
             <Input type='file' name={'photoURL'} />
-            <button className='w-full border py-2 bg-inputBg rounded-full mt-2'>
-              Sign up
-            </button>
+            <SubmitButton label='Sign Up' />
           </form>
         </FormProvider>
         <p className='mt-6'>
