@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App'
 import EmptyChat from './components/EmptyChat'
+import ProtectedRoute from './components/ProtectedRoute'
 import AuthProvider from './context/AuthContext'
 import Home from './pages/Home'
 import Login from './pages/Login'
@@ -18,7 +19,7 @@ const routes = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home />
+        element: <ProtectedRoute element={<Home />} />
       },
       {
         path: '/login',
@@ -30,7 +31,7 @@ const routes = createBrowserRouter([
       },
       {
         path: '/teste',
-        element: <Teste />
+        element: <ProtectedRoute element={<Teste />} />
       }
     ]
   }
