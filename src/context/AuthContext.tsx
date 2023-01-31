@@ -1,44 +1,41 @@
 import { createContext, ReactNode, useEffect, useState } from 'react'
-import { LoginInputProps } from '../pages/Login'
-import { RegisterInputProps } from '../pages/Register'
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  updateProfile
+  signOut,
+  updateProfile,
+  User
 } from 'firebase/auth'
 import { db, auth, storage } from '../services/firebase'
-import {
-  getDownloadURL,
-  ref,
-  uploadBytes,
-  uploadBytesResumable
-} from 'firebase/storage'
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { doc, setDoc } from 'firebase/firestore'
-import { string } from 'zod'
+import {
+  LoginInputProps,
+  RegisterInputProps
+} from '../schemas/userInput.schemas'
 
 interface AuthContextProps {
-  user: any
+  currentUser: User | null
   errors: null | string
   loading: boolean
-
   signUp: (data: RegisterInputProps) => Promise<void>
   signIn: (data: LoginInputProps) => Promise<void>
   // signInWithGoogle: () => Promise<void>
-  // signOut: () => Promise<void>
+  logout: () => Promise<void>
 }
 
 export const AuthContext = createContext<AuthContextProps>({
-  user: null,
+  currentUser: null,
   errors: null,
   loading: false,
   signUp: async () => {},
-  signIn: async () => {}
+  signIn: async () => {},
   // signInWithGoogle: async () => {},
-  // signOut: async () => {}
+  logout: async () => {}
 })
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState(null)
+  const [currentUser, setCurrentUser] = useState<User | null>(null)
   const [errors, setErrors] = useState('')
   const [loading, setLoading] = useState(false)
   const [cancelled, setCancelled] = useState(false)
@@ -104,8 +101,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     setLoading(true)
     setErrors('')
     try {
-      const { user } = await signInWithEmailAndPassword(auth, email, password)
-      console.log(user)
+      await signInWithEmailAndPassword(auth, email, password)
     } catch (error) {
       let sysErrorMessage
       if (error instanceof Error && error.message.includes('user-not-found')) {
@@ -125,19 +121,28 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
     setLoading(false)
   }
+
   const signInWithGoogle = () => {}
 
-  const signOut = () => {
+  const logout = async () => {
     checkIfIsCancelled()
-    signOut()
+    signOut(auth)
   }
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      setCurrentUser(user)
+    })
+    return () => unsubscribe()
+  }, [])
 
   useEffect(() => {
     return () => setCancelled(true)
   }, [])
 
   return (
-    <AuthContext.Provider value={{ signIn, signUp, errors, user, loading }}>
+    <AuthContext.Provider
+      value={{ signIn, signUp, logout, errors, currentUser, loading }}>
       {children}
     </AuthContext.Provider>
   )
