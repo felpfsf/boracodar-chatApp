@@ -1,7 +1,7 @@
 import { VscCircleFilled } from 'react-icons/vsc'
 
 interface ChatsProps {
-  uid: number
+  // uid: number
   displayName: string
   lastMessage: string
   photoURL: string
@@ -9,7 +9,7 @@ interface ChatsProps {
 
 const Chats = ({ displayName, lastMessage, photoURL }: ChatsProps) => {
   return (
-    <div className='flex gap-x-4 items-center mt-4'>
+    <div className='flex gap-x-4 items-center mt-4 cursor-pointer'>
       <div className='w-12 h-12 rounded-full overflow-hidden'>
         <img src={photoURL} alt='' className='w-full h-full object-cover' />
       </div>
