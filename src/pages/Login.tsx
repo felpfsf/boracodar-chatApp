@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { ZodError } from 'zod'
 import { useAuthStore } from '../context/useAuthStore'
 import Input from '../components/ui/Input'
@@ -19,6 +19,7 @@ interface FormErrorsProps {
 
 const Login = () => {
   const { signIn, errors, loading } = useAuthStore()
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState<FormDataProps>({
     email: '',
@@ -46,6 +47,7 @@ const Login = () => {
       // console.log('Form is valid')
       // console.log('Sending ->', formData)
       signIn(formData)
+      navigate('/')
     } catch (error) {
       if (error instanceof ZodError) {
         const errors = error.errors.reduce((prev: any, current: any) => {

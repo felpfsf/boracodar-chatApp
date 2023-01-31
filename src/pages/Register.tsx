@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { ZodError } from 'zod'
 import { useAuthStore } from '../context/useAuthStore'
 import Input from '../components/ui/Input'
@@ -30,6 +30,7 @@ const Register = () => {
     photoURL: null
   })
   const [formErrors, setFormErrors] = useState<FormErrorsProps>({})
+  const navigate = useNavigate()
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -63,6 +64,7 @@ const Register = () => {
       // console.log('Form is valid')
       // console.log('sending ->', formData)
       await signUp(formData)
+      navigate('/')
     } catch (error) {
       if (error instanceof ZodError) {
         // console.log('Validation error')
