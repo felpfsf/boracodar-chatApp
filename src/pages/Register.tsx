@@ -1,31 +1,80 @@
-import Input from '../components/ui/Input'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useForm, FormProvider } from 'react-hook-form'
-import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { ZodError } from 'zod'
+import { useAuthStore } from '../context/useAuthStore'
+import Input from '../components/ui/Input'
 import SubmitButton from '../components/ui/SubmitButton'
+import { FiAlertCircle } from 'react-icons/fi'
+import { registerSchema } from '../schemas/userInput.schemas'
 
-export const registerSchema = z.object({
-  name: z.string().min(3, 'Name is required'),
-  email: z.string().email().min(1, 'Email is required'),
-  password: z.string().min(6, 'Password is required'),
-  photoURL: z.any().nullable().optional() /*any, foda-se hahahaha */
-  // photoURL: z.object({
-  //   name: z.string(),
-  //   size: z.number(),
-  //   type: z.string()
-  // })
-})
+interface FormDataProps {
+  displayName: string
+  email: string
+  password: string
+  photoURL: File | null
+}
 
-export type RegisterInputProps = z.infer<typeof registerSchema>
+interface FormErrorsProps {
+  displayName?: string
+  email?: string
+  password?: string
+  photoURL?: string
+}
 
 const Register = () => {
-  const methods = useForm<RegisterInputProps>({
-    resolver: zodResolver(registerSchema)
+  const { signUp, errors, loading } = useAuthStore()
+  const [formData, setFormData] = useState<FormDataProps>({
+    displayName: '',
+    email: '',
+    password: '',
+    photoURL: null
   })
+  const [formErrors, setFormErrors] = useState<FormErrorsProps>({})
 
-  const onSubmit = (data: RegisterInputProps) => {
-    console.log(data)
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      [name]: value
+    }))
+    setFormErrors(prevErrors => ({
+      ...prevErrors,
+      [name]: undefined
+    }))
+  }
+
+  const handleFileInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files ? e.target.files[0] : null
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      photoURL: file
+    }))
+    setFormErrors(prevErrors => ({
+      ...prevErrors,
+      image: undefined
+    }))
+  }
+
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    try {
+      registerSchema.parse(formData)
+      setFormErrors({})
+      // console.log('Form is valid')
+      // console.log('sending ->', formData)
+      await signUp(formData)
+    } catch (error) {
+      if (error instanceof ZodError) {
+        // console.log('Validation error')
+        const errors = error.errors.reduce((prev: any, current: any) => {
+          prev[current.path[0]] = current.message
+          return prev
+        }, {} as FormErrorsProps)
+        setFormErrors(errors)
+      } else {
+        console.log('Something went wrong, try again later')
+      }
+    }
   }
 
   return (
@@ -33,19 +82,51 @@ const Register = () => {
       <div className='container p-8 mx-auto max-w-sm bg-receivedBg rounded-lg flex flex-col items-center'>
         <h1 className='text-4xl font-bold'>Chat App</h1>
         <h1 className='text-2xl'>Register</h1>
-        <FormProvider {...methods}>
-          <form
-            className='flex flex-col w-full'
-            onSubmit={methods.handleSubmit(onSubmit)}>
-            <Input type='text' placeholder='Name' name={'name'} />
-            <Input type='text' placeholder='E-mail Address' name={'email'} />
-            <Input type='password' placeholder='Password' name={'password'} />
-            <Input type='file' name={'photoURL'} />
-            <SubmitButton label='Sign Up' />
-          </form>
-        </FormProvider>
-        <p className='mt-6'>
-          You do have an account?{' '}
+
+        <form
+          className='flex flex-col w-full mt-6 relative'
+          onSubmit={onSubmit}>
+          <Input
+            type='text'
+            placeholder='Name'
+            name={'displayName'}
+            onChange={handleChange}
+            error={formErrors.displayName}
+          />
+          <Input
+            type='text'
+            placeholder='E-mail Address'
+            name={'email'}
+            onChange={handleChange}
+            error={formErrors.email}
+          />
+          <Input
+            type='password'
+            placeholder='Password'
+            name={'password'}
+            onChange={handleChange}
+            error={formErrors.password}
+          />
+          <Input
+            type='file'
+            name={'photoURL'}
+            onChange={handleFileInput}
+            error={formErrors.photoURL}
+          />
+          {errors ? (
+            <div className='absolute bottom-12 mt-1 flex items-center gap-2 text-red-500 font-light text-sm'>
+              <FiAlertCircle />
+              <span>{errors}</span>
+            </div>
+          ) : null}
+          {loading ? (
+            <SubmitButton label='Loading' disbale={true} variant='loading' />
+          ) : (
+            <SubmitButton label='Sign Up' variant='submit' />
+          )}
+        </form>
+        <p className='mt-6 flex gap-2'>
+          You do have an account?
           <Link
             className='underline underline-offset-4 hover:text-inputBg transition-colors ease-in-out duration-300'
             to={'/login'}>
