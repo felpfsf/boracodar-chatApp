@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { useFormContext } from 'react-hook-form'
+import { ChangeEvent, useState } from 'react'
 import clsx from 'clsx'
 import { FcAddImage } from 'react-icons/fc'
 import { FiAlertCircle } from 'react-icons/fi'
@@ -13,20 +12,25 @@ interface InputProps {
   type: TInputTypes
   placeholder?: string
   name: string
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  error?: string
 }
 
-const Input = ({ type, label, placeholder, name }: InputProps) => {
-  const {
-    register,
-    formState: { errors }
-  } = useFormContext()
-
+const Input = ({
+  error,
+  type,
+  label,
+  placeholder,
+  name,
+  onChange
+}: InputProps) => {
   const [fileName, setFileName] = useState('')
 
-  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setFileName(e.target.files[0].name)
     }
+    onChange(e)
   }
 
   return (
@@ -46,7 +50,6 @@ const Input = ({ type, label, placeholder, name }: InputProps) => {
         <label>{label}</label>
       )}
       <input
-        {...register(name)}
         name={name}
         type={type}
         id={name}
@@ -61,10 +64,10 @@ const Input = ({ type, label, placeholder, name }: InputProps) => {
         placeholder={placeholder}
         accept='image/png, image/jpeg, image/jpg'
       />
-      {errors[name]?.message && (
+      {error && (
         <div className='absolute mt-1 flex items-center gap-2 text-red-500 font-light text-sm'>
           <FiAlertCircle />
-          <span>{errors[name]?.message as string}</span>
+          <span>{error}</span>
         </div>
       )}
     </div>
