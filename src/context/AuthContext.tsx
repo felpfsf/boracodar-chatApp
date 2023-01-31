@@ -76,7 +76,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
               displayName,
               photoURL: downloadURL
             })
-            await setDoc(doc(db, 'userCharts', user.uid), {})
+            await setDoc(doc(db, 'userChats', user.uid), {})
           } catch (error) {
             console.log(error)
           }
