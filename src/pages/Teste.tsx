@@ -1,6 +1,7 @@
 import { ref, uploadBytes } from 'firebase/storage'
 import React, { ChangeEvent, FormEvent, SyntheticEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useAuthStore } from '../context/useAuthStore'
 import { storage } from '../services/firebase'
 
 const Teste = () => {
@@ -65,8 +66,24 @@ const Teste = () => {
     })
   }
 
+  const { logout, currentUser } = useAuthStore()
+  const handleLogout = () => {
+    console.log('object')
+    logout()
+  }
+
   return (
     <div className='w-full m-auto items-center justify-center'>
+      <div className='w-2/6 m-auto flex items-center justify-center'>
+        {currentUser ? (
+          <div>
+            <img src={currentUser.photoURL} alt="" />
+          </div>
+        ):null}
+        <button className='mt-4 border py-2 px-4' onClick={handleLogout}>
+          Sign Out
+        </button>
+      </div>
       <form
         // onSubmit={handleFileUploads}
         onSubmit={formSubmit}
