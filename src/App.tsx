@@ -1,9 +1,12 @@
 import { Outlet } from 'react-router-dom'
+import { ChatContext } from './context/ChatContext'
 
 function App() {
-  return <Outlet />
+  return (
+    <>
+      <Outlet />
+    </>
+  )
 }
 
 export default App
-
-
