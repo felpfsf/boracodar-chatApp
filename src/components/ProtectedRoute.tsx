@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
-import { useAuthStore } from '../context/useAuthStore'
+import { useAuthStore } from '../hooks/useAuthStore'
 import Login from '../pages/Login'
 
 const ProtectedRoute = ({ element, ...rest }: { element: JSX.Element }) => {

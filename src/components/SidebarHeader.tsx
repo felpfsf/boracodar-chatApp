@@ -1,4 +1,4 @@
-import { useAuthStore } from '../context/useAuthStore'
+import { useAuthStore } from '../hooks/useAuthStore'
 
 interface UserProps {
   displayName: string
@@ -17,11 +17,7 @@ const SidebarHeader = () => {
       {/* Perfil */}
       <div className='flex gap-x-4 items-center justify-center'>
         <div className='w-12 h-12 rounded-full overflow-hidden'>
-          <img
-            src={photoURL}
-            alt=''
-            className='w-full h-full object-cover'
-          />
+          <img src={photoURL} alt='' className='w-full h-full object-cover' />
         </div>
         <div>
           <h2 className='font-bold'>{displayName}</h2>

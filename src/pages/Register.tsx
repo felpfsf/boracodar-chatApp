@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ZodError } from 'zod'
-import { useAuthStore } from '../context/useAuthStore'
+import { useAuthStore } from '../hooks/useAuthStore'
 import Input from '../components/ui/Input'
 import SubmitButton from '../components/ui/SubmitButton'
 import { FiAlertCircle } from 'react-icons/fi'
