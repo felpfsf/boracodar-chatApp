@@ -8,7 +8,7 @@ import AuthProvider from './context/AuthContext'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import Teste from './pages/Teste'
+// import Teste from './pages/Teste'
 import './styles/index.css'
 
 const routes = createBrowserRouter([
@@ -28,11 +28,11 @@ const routes = createBrowserRouter([
       {
         path: '/register',
         element: <Register />
-      },
-      {
-        path: '/teste',
-        element: <ProtectedRoute element={<Teste />} />
       }
+      // {
+      //   path: '/teste',
+      //   element: <ProtectedRoute element={<Teste />} />
+      // }
     ]
   }
 ])
